@@ -33,7 +33,7 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         setLevel.setLayout(new FlowLayout());
         setLevel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         JLabel label = new JLabel("Poziom Trudności: ");
-        JComboBox level = new JComboBox<>(levels);
+        JComboBox level = new JComboBox<>(levels); //w comboBox nie da sie wpisywać dlatego lepsze niż spinner
         setLevel.add(label);
         setLevel.add(level);
         
