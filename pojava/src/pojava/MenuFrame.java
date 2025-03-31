@@ -1,10 +1,12 @@
 package pojava;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.event.*;
 
 
-public class MenuFrame extends JFrame //implements ActionListener
+public class MenuFrame extends JFrame implements ActionListener
 {
 	public MenuFrame() throws HeadlessException {
         
@@ -77,16 +79,32 @@ public class MenuFrame extends JFrame //implements ActionListener
         buttonGraj.setBackground(new Color(229,204,255)); //kolor w wartościach RGB
         buttonGraj.setFocusPainted(false); // usuwa efekt obramowania po kliknięciu
  
-        
+        //Akcja wykonywana przez buttonGraj
+        buttonGraj.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Zamknięcie bieżącego okna
+                dispose();
+                
+                // Otwarcie drugiego okna
+                SecondMenuFrame frame2 = new SecondMenuFrame();
+                frame2.setVisible(true);
+            }
+        });
         
         
 }
-	//public void actionPerformed(ActionEvent e) {}
+	
 	
 	public static void main(String[] args) {
 		MenuFrame frame = new MenuFrame();
 		frame.setVisible(true);
 
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
