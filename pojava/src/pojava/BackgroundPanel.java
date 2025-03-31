@@ -2,17 +2,18 @@ package pojava;
 import javax.swing.*;
 import java.awt.*;
 
-class BackgroundPanel extends JPanel {
+public class BackgroundPanel extends JPanel {
     Image backgroundImage;
 
-    public BackgroundPanel(String filePath) {
-        backgroundImage = new ImageIcon(filePath).getImage();
+    public BackgroundPanel(String imageName) {
+    	//wczytanie obrazu tła
+        backgroundImage = new ImageIcon(getClass().getResource(imageName)).getImage();
     }
-
+    
+ // nadpisanie paintComponent do rysowania obrazu tła
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        super.paintComponent(g); //m.in. czyści panel
+        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this); //rysowanie obrazu na całej powierzchni panelu
     }
-
 }
