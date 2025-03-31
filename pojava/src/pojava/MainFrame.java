@@ -17,15 +17,14 @@ public class MainFrame extends JFrame {
         // Tworzenie paneli (menu, menu2, gra)
         MenuPanel menu = new MenuPanel(cardLayout, cardPanel);
         SecondMenuPanel menu2 = new SecondMenuPanel(cardLayout, cardPanel);
-        
-        JPanel game = new JPanel(); // Tutaj później dodasz kod gry
+        GamePanel game = new GamePanel(cardLayout,cardPanel); 
         game.setBackground(Color.BLACK); // 
         
 
         // Dodanie paneli do CardLayout
         cardPanel.add(menu, "Menu");
         cardPanel.add(menu2, "Menu2");
-        cardPanel.add(game, "Gra");
+        cardPanel.add(game, "Game");
         
 
         // Dodanie panelu do głównego okna

@@ -37,7 +37,7 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         setLevel.add(label);
         setLevel.add(spinner);
         
-        String[] gameColor = {"Tło1      ","Tło2", "Tło3"};
+        String[] gameColor = {"Tło1","Tło2", "Tło3"};
         JPanel setColor = new JPanel();
         setColor.setLayout(new FlowLayout());
         setColor.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -61,7 +61,7 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         
         //ustawienie rozmiaru przycisków
         Dimension buttonSize = new Dimension(200,50);
-        Dimension buttonSize2 = new Dimension(150,50);
+        Dimension buttonSize2 = new Dimension(200,35);
         buttonStart.setMinimumSize(buttonSize);
         buttonStart.setMaximumSize(buttonSize);
         buttonStart.setPreferredSize(buttonSize);
@@ -70,13 +70,13 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         nazwaUżytkownika.setMaximumSize(buttonSize);
         nazwaUżytkownika.setPreferredSize(buttonSize);
         
-        setLevel.setMinimumSize(buttonSize);
-        setLevel.setMaximumSize(buttonSize);
-        setLevel.setPreferredSize(buttonSize);
+        setLevel.setMinimumSize(buttonSize2);
+        setLevel.setMaximumSize(buttonSize2);
+        setLevel.setPreferredSize(buttonSize2);
         
-        setColor.setMinimumSize(buttonSize);
-        setColor.setMaximumSize(buttonSize);
-        setColor.setPreferredSize(buttonSize);
+        setColor.setMinimumSize(buttonSize2);
+        setColor.setMaximumSize(buttonSize2);
+        setColor.setPreferredSize(buttonSize2);
      
         
         
@@ -99,7 +99,16 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         setLevel.setBackground(new Color(229,204,255)); 
         setColor.setBackground(new Color(229,204,255)); 
         buttonStart.setFocusPainted(false); // usuwa efekt obramowania po kliknięciu
- 
+        
+        
+      //Ustawienie funkcjonalności przycisków
+        buttonStart.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(cardPanel, "Game");
+			}
+			
+		});
   
                 
 }
