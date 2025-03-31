@@ -33,18 +33,18 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         setLevel.setLayout(new FlowLayout());
         setLevel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         JLabel label = new JLabel("Poziom Trudności: ");
-        JSpinner spinner = new JSpinner(new SpinnerListModel(levels));
+        JComboBox level = new JComboBox<>(levels);
         setLevel.add(label);
-        setLevel.add(spinner);
+        setLevel.add(level);
         
         String[] gameColor = {"Tło1","Tło2", "Tło3"};
         JPanel setColor = new JPanel();
         setColor.setLayout(new FlowLayout());
         setColor.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         JLabel label2 = new JLabel("Tło gry: ");
-        JSpinner spinner2 = new JSpinner(new SpinnerListModel(gameColor));
+        JComboBox colors = new JComboBox<>(gameColor);
         setColor.add(label2);
-        setColor.add(spinner2);
+        setColor.add(colors);
         
         
         JButton buttonStart = new JButton("START");
@@ -60,8 +60,8 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         
         
         //ustawienie rozmiaru przycisków
-        Dimension buttonSize = new Dimension(200,50);
-        Dimension buttonSize2 = new Dimension(200,35);
+        Dimension buttonSize = new Dimension(250,50);
+        Dimension buttonSize2 = new Dimension(250,35);
         buttonStart.setMinimumSize(buttonSize);
         buttonStart.setMaximumSize(buttonSize);
         buttonStart.setPreferredSize(buttonSize);
