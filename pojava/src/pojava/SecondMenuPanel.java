@@ -6,13 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.event.*;
 
 
-public class SecondMenuPanel extends JPanel implements ActionListener
+public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 {
 	CardLayout cardLayout;
     JPanel cardPanel;
 	
     public SecondMenuPanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
+    	super("/tetris_background.png");
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
@@ -20,6 +21,7 @@ public class SecondMenuPanel extends JPanel implements ActionListener
         //tworzenie centralnego panelu
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setOpaque(false); //ustawienie przezroczystości panelu, aby była widoczna grafika tła
         this.add(centerPanel, BorderLayout.CENTER);
         
         
