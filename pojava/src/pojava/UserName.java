@@ -18,6 +18,7 @@ public class UserName extends JTextField{
 		this.showPlaceholder = true;
 		setBackground(new Color(229,204,255));
 		setForeground(Color.BLACK);
+		setFont(new Font("Arial", Font.BOLD, 14));
 		setHorizontalAlignment(SwingConstants.CENTER);
 		
 		this.addFocusListener(new FocusListener() {

@@ -51,6 +51,8 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         
         JButton buttonStart = new JButton("START");
         
+        JButton buttonBack = new JButton("Powrót");
+        
         
         
         //wyśrodkowanie przycisków
@@ -58,6 +60,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         setColor.setAlignmentX(Component.CENTER_ALIGNMENT);
         nazwaUżytkownika.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonStart.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buttonBack.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         
         
@@ -79,6 +82,10 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         setColor.setMinimumSize(buttonSize2);
         setColor.setMaximumSize(buttonSize2);
         setColor.setPreferredSize(buttonSize2);
+        
+        buttonBack.setMinimumSize(new Dimension(100,20));
+        buttonBack.setMaximumSize(new Dimension(100,20));
+        buttonBack.setPreferredSize(new Dimension(100,20));
      
         
         
@@ -91,16 +98,25 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         centerPanel.add(setColor);
         centerPanel.add(Box.createVerticalStrut(20));
         centerPanel.add(buttonStart);
-        centerPanel.add(Box.createVerticalStrut(20));
+        centerPanel.add(Box.createVerticalStrut(120));
+        centerPanel.add(buttonBack);
+        centerPanel.add(Box.createVerticalStrut(100));
         
         
         
         
         //wygląd przycisków
         buttonStart.setBackground(new Color(229,204,255)); //kolor w wartościach RGB
-        setLevel.setBackground(new Color(229,204,255)); 
-        setColor.setBackground(new Color(229,204,255)); 
+        buttonStart.setFont(new Font("Arial", Font.BOLD, 14));
         buttonStart.setFocusPainted(false); // usuwa efekt obramowania po kliknięciu
+        buttonBack.setBackground(new Color(229,204,255)); 
+        buttonBack.setFont(new Font("Arial", Font.BOLD, 14));
+        buttonBack.setFocusPainted(false); 
+        setLevel.setBackground(new Color(229,204,255)); 
+        setLevel.setFont(new Font("Arial", Font.BOLD, 14));
+        setColor.setBackground(new Color(229,204,255));
+        setColor.setFont(new Font("Arial", Font.BOLD, 14));
+        
         
         
       //Ustawienie funkcjonalności przycisków
@@ -108,6 +124,13 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cardPanel, "Game");
+			}
+			
+		});
+        buttonBack.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(cardPanel, "Menu");
 			}
 			
 		});

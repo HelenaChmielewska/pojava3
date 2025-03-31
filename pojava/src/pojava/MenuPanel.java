@@ -52,7 +52,7 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
         
         
         //ustawienie rozmiaru przycisków
-        Dimension buttonSize = new Dimension(200,50);
+        Dimension buttonSize = new Dimension(250,50);
         //Dimension buttonSize2 = new Dimension(150,50);
         buttonGraj.setMinimumSize(buttonSize);
         buttonGraj.setMaximumSize(buttonSize);
