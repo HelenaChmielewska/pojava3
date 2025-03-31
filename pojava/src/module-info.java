@@ -4,5 +4,5 @@
 /**
  * 
  */
-module pojava {
+module pojava {requires java.desktop;
 }
