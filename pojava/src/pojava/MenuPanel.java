@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import javax.swing.event.*;
 
 
-public class MenuFrame extends JFrame implements ActionListener
+public class MenuPanel extends JPanel implements ActionListener
 {
-	public MenuFrame() throws HeadlessException {
+	CardLayout cardLayout;
+    JPanel cardPanel;
+	
+    public MenuPanel(CardLayout cardLayout, JPanel cardPanel){
         
-		//tworzenie okna
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(700, 700);
-        this.setLayout(new BorderLayout());
-        this.setLocationRelativeTo(null); //wyśrodkowanie okna
-        
-        
+    	setLayout(new BorderLayout());
+    	this.cardLayout = cardLayout;
+        this.cardPanel = cardPanel;
+    	
         //tworzenie centralnego panelu
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -79,28 +79,19 @@ public class MenuFrame extends JFrame implements ActionListener
         buttonGraj.setBackground(new Color(229,204,255)); //kolor w wartościach RGB
         buttonGraj.setFocusPainted(false); // usuwa efekt obramowania po kliknięciu
  
-        //Akcja wykonywana przez buttonGraj
-        buttonGraj.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Zamknięcie bieżącego okna
-                dispose();
+        //Ustawienie funkcjonalności przycisków
+        buttonGraj.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(cardPanel, "Menu2");
+			}
+			
+		});
                 
-                // Otwarcie drugiego okna
-                SecondMenuFrame frame2 = new SecondMenuFrame();
-                frame2.setVisible(true);
-            }
-        });
-        
-        
 }
 	
 	
-	public static void main(String[] args) {
-		MenuFrame frame = new MenuFrame();
-		frame.setVisible(true);
-
-	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
