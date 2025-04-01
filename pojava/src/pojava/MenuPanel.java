@@ -8,8 +8,8 @@ import javax.swing.event.*;
 
 public class MenuPanel extends BackgroundPanel implements ActionListener
 {
-	CardLayout cardLayout;
-    JPanel cardPanel;
+	CardLayout cardLayout; //cardLayout pozwala przełączać się między panelami
+    JPanel cardPanel; //to kontener, w którym przechowywane są panele
 	
     public MenuPanel(CardLayout cardLayout, JPanel cardPanel){
         
