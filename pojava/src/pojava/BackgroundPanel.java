@@ -5,9 +5,9 @@ import java.awt.*;
 public class BackgroundPanel extends JPanel {
     Image backgroundImage;
 
-    public BackgroundPanel(String imageName) {
+    public BackgroundPanel(String imagePath) {
     	//wczytanie obrazu tła
-        backgroundImage = new ImageIcon(getClass().getResource(imageName)).getImage();
+        backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
     }
     
  // nadpisanie paintComponent do rysowania obrazu tła
