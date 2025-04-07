@@ -3,6 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+ * Klasa głównego okna i obsługująca przełączanie między panelami
+ * @author Kinga Urban, Helena Chmielewska
+ */
+
 public class MainFrame extends JFrame {
     public MainFrame() {
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

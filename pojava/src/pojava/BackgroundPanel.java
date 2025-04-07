@@ -2,6 +2,11 @@ package pojava;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Klasa wczytująca grafikę tła
+ * @author Kinga Urban
+ */
+
 public class BackgroundPanel extends JPanel {
     Image backgroundImage;
 
@@ -17,3 +22,7 @@ public class BackgroundPanel extends JPanel {
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this); //rysowanie obrazu na całej powierzchni panelu, argument this działa jak obserwator ładowania obrazu, gdy np. ładuje się asynchronicznie
     }
 }
+
+
+
+

@@ -5,6 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
 
+/**
+ * Klasa panelu gry
+ * @author Helena Chmielewska
+ */
+
 public class GamePanel extends JPanel{
 
 	int wynik = 0 ;

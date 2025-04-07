@@ -5,6 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
 
+/**
+ * Klasa panelu drugiego menu - ustawienia gracza
+ * @author Helena Chmielewska
+ */
 
 public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 {
