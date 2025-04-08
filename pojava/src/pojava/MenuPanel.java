@@ -9,9 +9,9 @@ import javax.swing.event.*;
 public class MenuPanel extends BackgroundPanel implements ActionListener
 {
 	CardLayout cardLayout; //cardLayout pozwala przełączać się między panelami
-    JPanel cardPanel; //to kontener, w którym przechowywane są panele
+    JPanel cardPanel; 
 	
-    public MenuPanel(CardLayout cardLayout, JPanel cardPanel){
+    public MenuPanel(CardLayout cardLayout, JPanel cardPanel){ 
         
     	super("/tetris_background.png"); //przekazujemy nazwę obrazu do BackgroundPanel
     	
@@ -53,7 +53,7 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
         
         //ustawienie rozmiaru przycisków
         Dimension buttonSize = new Dimension(250,50);
-        //Dimension buttonSize2 = new Dimension(150,50);
+        
         buttonGraj.setMinimumSize(buttonSize);
         buttonGraj.setMaximumSize(buttonSize);
         buttonGraj.setPreferredSize(buttonSize);
@@ -77,7 +77,6 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
         centerPanel.add(Box.createVerticalStrut(20));
         bottomPanel.add(labelJezyk);
         bottomPanel.add(comboBoxJezyk);
-        //centerPanel.add(Box.createVerticalGlue()); 
         
         
         //wygląd komponentów - kolor, czcionka

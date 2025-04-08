@@ -21,14 +21,14 @@ public class MainFrame extends JFrame {
          
         
 
-        // Dodanie paneli do CardLayout
+        // Dodanie paneli do CardLayout i nadanie im nazw
         cardPanel.add(menu, "Menu");
         cardPanel.add(menu2, "Menu2");
         cardPanel.add(game, "Game");
         
 
         // Dodanie panelu do głównego okna
-        add(cardPanel);
+        this.add(cardPanel);
 
         // Początkowy widok (menu)
         cardLayout.show(cardPanel, "Menu");
