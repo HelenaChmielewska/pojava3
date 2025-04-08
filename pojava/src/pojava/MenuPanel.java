@@ -5,6 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
 
+/**
+ * Klasa panelu głównego menu
+ * @author Kinga Urban
+ */
 
 public class MenuPanel extends BackgroundPanel implements ActionListener
 {

@@ -7,6 +7,11 @@ import java.awt.event.FocusListener;
 import java.awt.event.FocusEvent;
 import javax.swing.event.*;
 
+/**
+ * Klasa tworząca obiekt do wpisania nazwy użytkownika
+ * @author Helena Chmielewska
+ */
+
 public class UserName extends JTextField{
 	
 	String placeholder;
