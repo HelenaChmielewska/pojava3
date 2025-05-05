@@ -9,11 +9,16 @@ import java.awt.event.ActionListener;
  */
 
 public class MainFrame extends JFrame {
+	
+	public static final int WIDTH = 700;
+	public static final int HEIGHT = 700;
+	
     public MainFrame() {
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(700, 700);
+        this.setSize(WIDTH, HEIGHT);
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null); //wyśrodkowanie okna
+        this.setResizable(false);
 
         // Ustawienie głównego panelu z CardLayout
         CardLayout cardLayout = new CardLayout();
@@ -21,8 +26,9 @@ public class MainFrame extends JFrame {
 
         // Tworzenie paneli (menu, menu2, gra)
         MenuPanel menu = new MenuPanel(cardLayout, cardPanel);
-        SecondMenuPanel menu2 = new SecondMenuPanel(cardLayout, cardPanel);
         GamePanel game = new GamePanel(cardLayout,cardPanel); 
+        SecondMenuPanel menu2 = new SecondMenuPanel(cardLayout, cardPanel);
+        
          
         
 
@@ -37,6 +43,8 @@ public class MainFrame extends JFrame {
 
         // Początkowy widok (menu)
         cardLayout.show(cardPanel, "Menu");
+        
+       
     }
     
 

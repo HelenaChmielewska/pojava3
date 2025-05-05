@@ -10,11 +10,14 @@ import javax.swing.event.*;
  * @author Helena Chmielewska
  */
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements Runnable{
 
 	int wynik = 0 ;
 	CardLayout cardLayout;
     JPanel cardPanel;
+    PlayManager game;
+    final int FPS = 60;
+	Thread gameThread;
 	
     public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
@@ -22,14 +25,8 @@ public class GamePanel extends JPanel{
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
         
-      
-        JPanel centerWrapper = new JPanel();
-        centerWrapper.setLayout(new GridBagLayout()); 
-        this.add(centerWrapper);
-        
       //tworzenie panelu gry .
-        JPanel gamePanel = new JPanel();
-        gamePanel.setBackground(new Color(0,0,139));
+        game = new PlayManager();
         
          
       //componenty nad ramka gry
@@ -45,14 +42,11 @@ public class GamePanel extends JPanel{
 	    JLabel result = new JLabel(String.format("%d", wynik));
 	    topPanel.add(result);
 	    
+	    this.add(topPanel,BorderLayout.NORTH);
 	    
 	    
 	    
-	    //rozmiar elementów
-	    Dimension panleSize = new Dimension(420,600);
-	    gamePanel.setPreferredSize(panleSize);
-	    gamePanel.setMinimumSize(panleSize);
-        gamePanel.setMaximumSize(panleSize);
+	  
         
         //wygląd komponentów - kolor, czcionka
         buttonBack.setBackground(new Color(229,204,255)); //kolor w wartościach RGB
@@ -62,14 +56,6 @@ public class GamePanel extends JPanel{
         result.setFont(new Font("Arial", Font.BOLD, 16));
         
 	    
-	   //Położenie elementów
-	    GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-	    centerWrapper.add(topPanel,gbc);
-	    gbc.gridx = 0;
-	    gbc.gridy = 2;
-	    centerWrapper.add(gamePanel,gbc);
 	   
 	    
 	    //Funkcjonalność przycisków
@@ -85,4 +71,42 @@ public class GamePanel extends JPanel{
         
 			
 		}
+    public void launchGame() {
+    	gameThread = new Thread(this);
+    	gameThread.start();
+    }
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		//pentla gry
+		System.out.println("run");
+		double drawInterval=1000000000/FPS;
+		double delta=0;
+		long lastTime = System.nanoTime();
+		long currentTime;
+		
+		while(gameThread != null) {
+			currentTime = System.nanoTime();
+			
+			delta += (currentTime-lastTime)/drawInterval;
+			
+			
+			if(delta >= 1) {
+				update();
+				repaint();
+				delta--;
+			}
+		}
+		
+	}
+
+	private void update() {
+		game.update();
+	}
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D)g;
+		game.draw(g2);
+	}
 }
