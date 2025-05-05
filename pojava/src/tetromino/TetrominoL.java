@@ -1,6 +1,7 @@
 package tetromino;
 import java.awt.Color;
 
+
 public class TetrominoL extends Tetromino{
 	
 	public TetrominoL() {
@@ -16,11 +17,5 @@ public class TetrominoL extends Tetromino{
 		b[2].y = b[0].y + Block.size;
 		b[3].x = b[0].x + Block.size;
 		b[3].y = b[0].y + Block.size;
-	}
-	public void updateXY (int direction) {
-		
-	}
-	public void update() {
-		
 	}
 }

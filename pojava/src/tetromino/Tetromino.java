@@ -29,8 +29,7 @@ public class Tetromino {
 			b[3].y +=Block.size;
 			autoDropCounter = 0;
 		}
-		System.out.println("run");
-	};
+	}
 	
 	public void draw(Graphics2D g2) {
 		int margin = 2;
@@ -39,5 +38,6 @@ public class Tetromino {
 		g2.fillRect(b[1].x+margin,b[1].y+margin,Block.size-(margin*2),Block.size-(margin*2));
 		g2.fillRect(b[2].x+margin,b[2].y+margin,Block.size-(margin*2),Block.size-(margin*2));
 		g2.fillRect(b[3].x+margin,b[3].y+margin,Block.size-(margin*2),Block.size-(margin*2));
+		//System.out.println("run");
 	}
 }

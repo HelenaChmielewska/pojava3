@@ -14,13 +14,15 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 {
 	CardLayout cardLayout;
     JPanel cardPanel;
+    GamePanel gamePanel;
 	
-    public SecondMenuPanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
+    public SecondMenuPanel(CardLayout cardLayout,JPanel cardPanel, GamePanel gamePanel) throws HeadlessException {
         
     	super("/tetris_background.png");
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+        this.gamePanel = gamePanel;
     	
         //tworzenie centralnego panelu
         JPanel centerPanel = new JPanel();
@@ -127,6 +129,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         buttonStart.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				gamePanel.launchGame();
 				cardLayout.show(cardPanel, "Game");
 			}
 			

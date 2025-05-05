@@ -24,6 +24,8 @@ public class GamePanel extends JPanel implements Runnable{
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+        this.addKeyListener(new KeyHandler());
+        this.setFocusable(true);
         
       //tworzenie panelu gry .
         game = new PlayManager();
@@ -79,8 +81,8 @@ public class GamePanel extends JPanel implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		//pentla gry
-		System.out.println("run");
+		//pętla gry
+		//System.out.println("run");
 		double drawInterval=1000000000/FPS;
 		double delta=0;
 		long lastTime = System.nanoTime();
@@ -91,12 +93,12 @@ public class GamePanel extends JPanel implements Runnable{
 			
 			delta += (currentTime-lastTime)/drawInterval;
 			
-			
 			if(delta >= 1) {
 				update();
 				repaint();
 				delta--;
 			}
+			
 		}
 		
 	}

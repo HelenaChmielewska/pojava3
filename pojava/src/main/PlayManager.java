@@ -19,6 +19,7 @@ public class PlayManager {
 	Tetromino currentMino;
 	final int MINO_START_X;
 	final int MINO_START_Y;
+	
 	public static int dropInterval = 60;
 	
 	public PlayManager() {
@@ -34,14 +35,15 @@ public class PlayManager {
 		currentMino.setXY(MINO_START_X, MINO_START_Y);
 	}
 	public void update() {
-		currentMino.update();
-	
+	       currentMino.update();
 	}
 	public void draw(Graphics2D g2) {
+		//okienko gry
 		g2.setColor(Color.blue);
 		g2.setStroke(new BasicStroke(4f));
 		g2.fillRect(left_x-4,top_y-4, WIDTH+8,HEIGHT+8);
 		
+		//rysowanie tetromino wystepujacego na panelu gry
 		if(currentMino != null) {
 			currentMino.draw(g2);
 		}
