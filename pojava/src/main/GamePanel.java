@@ -1,4 +1,4 @@
-package pojava;
+package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -49,7 +49,7 @@ public class GamePanel extends JPanel{
 	    
 	    
 	    //rozmiar elementów
-	    Dimension panleSize = new Dimension(400,550);
+	    Dimension panleSize = new Dimension(420,600);
 	    gamePanel.setPreferredSize(panleSize);
 	    gamePanel.setMinimumSize(panleSize);
         gamePanel.setMaximumSize(panleSize);
