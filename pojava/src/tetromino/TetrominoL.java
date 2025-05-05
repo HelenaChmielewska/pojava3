@@ -18,4 +18,5 @@ public class TetrominoL extends Tetromino{
 		b[3].x = b[0].x + Block.size;
 		b[3].y = b[0].y + Block.size;
 	}
+	
 }

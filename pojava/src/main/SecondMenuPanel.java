@@ -129,7 +129,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         buttonStart.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gamePanel.launchGame();
+				//gamePanel.launchGame();
 				cardLayout.show(cardPanel, "Game");
 			}
 			

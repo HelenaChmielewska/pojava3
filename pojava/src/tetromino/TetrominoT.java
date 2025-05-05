@@ -21,11 +21,6 @@ public class TetrominoT extends Tetromino{
 		b[3].x = x;
 		b[3].y = y - Block.size;
 	}
-	public void updateXY (int direction) {
-		
-	}
-	public void update() {
-		
-	}
+
 }
 

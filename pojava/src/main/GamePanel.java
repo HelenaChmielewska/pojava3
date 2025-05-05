@@ -82,7 +82,6 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		//pętla gry
-		//System.out.println("run");
 		double drawInterval=1000000000/FPS;
 		double delta=0;
 		long lastTime = System.nanoTime();
@@ -97,6 +96,7 @@ public class GamePanel extends JPanel implements Runnable{
 				update();
 				repaint();
 				delta--;
+				//System.out.println("run");
 			}
 			
 		}
@@ -105,6 +105,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 	private void update() {
 		game.update();
+		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
