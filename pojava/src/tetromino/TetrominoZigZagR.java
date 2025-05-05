@@ -3,7 +3,7 @@ package tetromino;
 import java.awt.Color;
 
 public class TetrominoZigZagR extends Tetromino {
-	
+	//komentarz
 	public TetrominoZigZagR() {
 		create(new Color(220,60,66));
 	}
