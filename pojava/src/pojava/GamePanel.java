@@ -27,7 +27,7 @@ public class GamePanel extends JPanel{
         centerWrapper.setLayout(new GridBagLayout()); 
         this.add(centerWrapper);
         
-      //tworzenie panelu gry
+      //tworzenie panelu gry .
         JPanel gamePanel = new JPanel();
         gamePanel.setBackground(new Color(0,0,139));
         
