@@ -107,10 +107,28 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cardPanel, "Menu2");
 			}
-		});           
+		});
+        buttonInstrukcja.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showInstructions();
+            }
+        });
 }
 	
-	
+    private void showInstructions() {
+        String instructions = "Instrukcja gry Tetris:\n\n" +
+                "1. Celem gry jest układanie klocków w poziome linie.\n" +
+                "2. Klocki spadają w dół, a gracz może je obracać i przesuwać.\n" +
+                "3. Kiedy linia jest pełna, znika i daje punkty.\n" +
+                "4. Gra kończy się, gdy klocki dotkną górnej krawędzi ekranu.\n\n" +
+                "Sterowanie:\n" +
+                "Strzałki prawo, lewo, dół: poruszanie klockami\n" +
+                "Strzałka do góry: obracanie klocka\n"+
+                "Spacja: pauza w grze";
+
+        JOptionPane.showMessageDialog(this, instructions, "Instrukcja gry", JOptionPane.INFORMATION_MESSAGE);
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
