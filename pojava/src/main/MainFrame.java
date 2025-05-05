@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
         MenuPanel menu = new MenuPanel(cardLayout, cardPanel);
         SecondMenuPanel menu2 = new SecondMenuPanel(cardLayout, cardPanel);
         GamePanel game = new GamePanel(cardLayout,cardPanel); 
-        game.setBackground(Color.BLACK); // 
+         
         
 
         // Dodanie paneli do CardLayout i nadanie im nazw
