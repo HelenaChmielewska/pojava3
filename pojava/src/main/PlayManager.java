@@ -3,9 +3,16 @@ package main;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 import tetromino.Tetromino;
 import tetromino.TetrominoL;
+import tetromino.TetrominoLReversed;
+import tetromino.TetrominoT;
+import tetromino.TetrominoBar;
+import tetromino.TetrominoSquare;
+import tetromino.TetrominoZigZag1;
+import tetromino.TetrominoZigZag2;
 import tetromino.Block;
 
 public class PlayManager {
@@ -31,15 +38,34 @@ public class PlayManager {
 		MINO_START_X = left_x + (WIDTH/2) - Block.size;
 		MINO_START_Y = top_y + Block.size;
 		
-		currentMino = new TetrominoL();
+		currentMino = pickMino();
+		//currentMino = new TetrominoL();
 		currentMino.setXY(MINO_START_X, MINO_START_Y);
 	}
+	
+	private Tetromino pickMino() {
+		//wybieramy losowy kształt
+		Tetromino mino = null;
+		int i = new Random().nextInt(7); //losowa liczba od 0 do 6
+		
+		switch(i) {
+		case 0: mino = new TetrominoL(); break;
+		case 1: mino = new TetrominoLReversed(); break;
+		case 2: mino = new TetrominoT(); break;
+		case 3: mino = new TetrominoBar(); break;
+		case 4: mino = new TetrominoSquare(); break;
+		case 5: mino = new TetrominoZigZag1(); break;
+		case 6: mino = new TetrominoZigZag2(); break;
+		}
+		return mino;
+	}
+	
 	public void update() {
 	       currentMino.update();
 	}
 	public void draw(Graphics2D g2) {
 		//okienko gry
-		g2.setColor(Color.blue);
+		g2.setColor(new Color(0,0,153));
 		g2.setStroke(new BasicStroke(4f));
 		g2.fillRect(left_x-4,top_y-4, WIDTH+8,HEIGHT+8);
 		

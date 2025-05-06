@@ -24,6 +24,8 @@ public class GamePanel extends JPanel implements Runnable{
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+       
+        //implementacja KeyListener
         this.addKeyListener(new KeyHandler());
         this.setFocusable(true);
         
