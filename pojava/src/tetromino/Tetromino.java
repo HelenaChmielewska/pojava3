@@ -14,6 +14,7 @@ public class Tetromino {
 	int autoDropCounter = 0;
 	public int direction = 1; //4 kierunki: 1,2,3,4
 	boolean leftCollision, rightCollision, bottomCollision;
+	public boolean active = true;
 	
 	public void create(Color color) { //zrobiłam metodę create zamiast konstruktora bo z konstruktorem nie działało potem w dziedziczących
         for (int i = 0; i < 4; i++) {
@@ -132,14 +133,19 @@ public class Tetromino {
 			}
 		}
 		
-		//automatyczne spadanie
-		autoDropCounter++;
-		if(autoDropCounter >= PlayManager.dropInterval) {
-			b[0].y +=Block.size;
-			b[1].y +=Block.size;
-			b[2].y +=Block.size;
-			b[3].y +=Block.size;
-			autoDropCounter = 0;
+		if(bottomCollision) {
+			active=false; //klocek zostaje na miejscu, gdy występuje kolizja z dnem
+		}
+		else {
+			//automatyczne spadanie
+			autoDropCounter++;
+			if(autoDropCounter >= PlayManager.dropInterval) {
+				b[0].y +=Block.size;
+				b[1].y +=Block.size;
+				b[2].y +=Block.size;
+				b[3].y +=Block.size;
+				autoDropCounter = 0;
+			}
 		}
 	}
 	
