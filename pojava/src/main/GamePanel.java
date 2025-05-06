@@ -12,12 +12,12 @@ import javax.swing.event.*;
 
 public class GamePanel extends JPanel implements Runnable{
 
-	int wynik = 0 ;
 	CardLayout cardLayout;
     JPanel cardPanel;
     PlayManager game;
     final int FPS = 60;
 	Thread gameThread;
+	int score=0;
 	
     public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
         JLabel label = new JLabel("Wynik:");
         topPanel.add(label);
         
-	    JLabel result = new JLabel(String.format("%d", wynik));
+	    JLabel result = new JLabel(String.format("%d", score));
 	    topPanel.add(result);
 	    
 	    this.add(topPanel,BorderLayout.NORTH);
@@ -98,7 +98,9 @@ public class GamePanel extends JPanel implements Runnable{
 			lastTime=currentTime;
 			
 			if(delta >= 1) {
-				game.update();
+				if(KeyHandler.INSTANCE.pausePressed == false && game.gameOver == false) {
+					game.update();
+				}
 				repaint();
 
 				delta-=1;
@@ -108,10 +110,6 @@ public class GamePanel extends JPanel implements Runnable{
 		
 	}
 
-	/*private void update() {
-		game.update();
-		
-	}*/
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;

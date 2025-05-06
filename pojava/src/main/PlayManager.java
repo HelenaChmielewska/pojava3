@@ -36,6 +36,8 @@ public class PlayManager {
 	
 	
 	public static int dropInterval = 60;
+	boolean gameOver;
+	int score;
 	
 	public PlayManager() {
 		left_x = (MainFrame.WIDTH/2) - (WIDTH/2);
@@ -82,15 +84,65 @@ public class PlayManager {
 				staticBlocks.add(currentMino.b[i]); 
 			}
 			
+			if(currentMino.b[0].x == MINO_START_X && currentMino.b[0].y==MINO_START_Y) {
+				gameOver=true;
+			}
+			
+			currentMino.deactivating = false;
+			
 			//zamieniamy currentMino na nextMino
 			currentMino = nextMino;
 			currentMino.setXY(MINO_START_X, MINO_START_Y);
 			nextMino = pickMino();
 			nextMino.setXY(NEXTMINO_X, NEXTMINO_Y);
 			
+			//jeśli klocek sie zatrzymał (active=false) to sprawdzamy czy mozna skosowac linie
+			deleteLine();
+			
 		}
 		else {
 			currentMino.update();
+		}
+	}
+	public void deleteLine(){
+		int x = left_x;
+		int y = top_y;
+		int blockCounter = 0;
+		int lineCount = 0;
+		
+		while (x < right_x && y < bottom_y) {
+			
+			for(int i=0; i<staticBlocks.size(); i++) {
+				if(staticBlocks.get(i).x == x && staticBlocks.get(i).y == y ) {
+					blockCounter++;
+				}
+			}
+			x+=Block.size;
+			
+			if(x == right_x) {
+				
+				if(blockCounter == 12) {
+				
+					for(int i=staticBlocks.size()-1; i>-1; i--) {
+						if(staticBlocks.get(i).y == y ) {
+							staticBlocks.remove(i);
+						}
+					}
+					//lineCount++;
+					for(int i=0; i<staticBlocks.size(); i++) {
+						if(staticBlocks.get(i).y < y ) {
+							staticBlocks.get(i).y +=Block.size;
+						}
+					}
+				}
+				blockCounter=0;
+				x = left_x;
+				y+=Block.size;
+			}
+			/* if(lineCount>0) {
+				score += lineCount*100;
+				System.out.println("Aktualny wynik: " + score);
+			} Narazie nie działa  */
 		}
 	}
 	
@@ -113,5 +165,18 @@ public class PlayManager {
 			staticBlocks.get(i).draw(g2);
 		}
 		
+		//napis poused
+		g2.setColor(Color.white);
+		g2.setFont(g2.getFont().deriveFont(50f));
+		if(gameOver) {
+			int x = left_x + 35;
+			int y = top_y + 320;
+			g2.drawString("GAMEOVER", x, y);
+		}
+		else if(KeyHandler.INSTANCE.pausePressed) {
+			int x = left_x + 80;
+			int y = top_y + 320;
+			g2.drawString("PAUSED", x, y);	
+		}
 	}
 }
