@@ -35,41 +35,42 @@ public class Tetromino {
 	public void getDirection3() {};
 	public void getDirection4() {};
 	public void update() {
-		
+		synchronized(KeyHandler.INSTANCE) {
 		//sterowanie tetrominem
-		if(KeyHandler.upPressed) {
+		if(KeyHandler.INSTANCE.upPressed) {
 			switch(direction) {
 			case 1: getDirection2(); break;
 			case 2: getDirection3(); break;
 			case 3: getDirection4(); break;
 			case 4: getDirection1(); break;
 			}
-			KeyHandler.upPressed = false;
+			KeyHandler.INSTANCE.upPressed = false;
 		}
-		if(KeyHandler.downPressed) {
+		if(KeyHandler.INSTANCE.downPressed) {
 			for(int i=0; i<4; i++) {
 				b[i].y +=Block.size; //przesuwamy klocek do dołu o jedno pole
 			}
 			autoDropCounter = 0; //gdy strzałka w dół resetujemy autodrop
-			KeyHandler.downPressed = false; //po przesunięciu klocka w dół zmieniamy na false
+			KeyHandler.INSTANCE.downPressed = false; //po przesunięciu klocka w dół zmieniamy na false
 		}
-		if(KeyHandler.leftPressed) {
+		if(KeyHandler.INSTANCE.leftPressed) {
 			for(int i=0; i<4; i++) {
 				b[i].x -=Block.size; //przesuwamy klocek w lewo o jedno pole
 			}
-			KeyHandler.leftPressed = false;
+			KeyHandler.INSTANCE.leftPressed = false;
 		}
-		if(KeyHandler.rightPressed) {
+		if(KeyHandler.INSTANCE.rightPressed) {
 			for(int i=0; i<4; i++) {
 				b[i].x +=Block.size; //przesuwamy klocek w prawo o jedno pole
 			}
-			KeyHandler.rightPressed = false;
+			KeyHandler.INSTANCE.rightPressed = false;
 			
+		}
 		}
 		
 		//automatyczne spadanie
 		autoDropCounter++;
-		if(autoDropCounter == PlayManager.dropInterval) {
+		if(autoDropCounter >= PlayManager.dropInterval) {
 			b[0].y +=Block.size;
 			b[1].y +=Block.size;
 			b[2].y +=Block.size;

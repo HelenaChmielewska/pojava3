@@ -73,6 +73,8 @@ public class GamePanel extends JPanel implements Runnable{
 	    
 	    
         
+	    setFocusable(true);	
+	    requestFocusInWindow();
 			
 		}
     public void launchGame() {
@@ -84,7 +86,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		//pętla gry
-		double drawInterval=1000000000/FPS;
+		double drawInterval=FPS/1000000000;
 		double delta=0;
 		long lastTime = System.nanoTime();
 		long currentTime;
@@ -92,23 +94,24 @@ public class GamePanel extends JPanel implements Runnable{
 		while(gameThread != null) {
 			currentTime = System.nanoTime();
 			
-			delta += (currentTime-lastTime)/drawInterval;
+			delta += (currentTime-lastTime)/1e9*60;
+			lastTime=currentTime;
 			
 			if(delta >= 1) {
-				update();
+				game.update();
 				repaint();
-				delta--;
-				System.out.println("run");
+
+				delta-=1;
 			}
 			
 		}
 		
 	}
 
-	private void update() {
+	/*private void update() {
 		game.update();
 		
-	}
+	}*/
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;

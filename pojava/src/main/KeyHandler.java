@@ -4,14 +4,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
+	public static KeyHandler INSTANCE;
+	public boolean upPressed, downPressed, leftPressed, rightPressed;
 	
-	public static boolean upPressed, downPressed, leftPressed, rightPressed; 
+	public KeyHandler() {
+		INSTANCE = this;
+	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public synchronized void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		
 		if(code == KeyEvent.VK_UP) {
@@ -26,6 +30,7 @@ public class KeyHandler implements KeyListener{
 		if(code == KeyEvent.VK_RIGHT) {
 			rightPressed = true;
 		}
+		
 	}
 
 	@Override

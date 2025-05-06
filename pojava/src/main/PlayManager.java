@@ -46,7 +46,7 @@ public class PlayManager {
 	private Tetromino pickMino() {
 		//wybieramy losowy kształt
 		Tetromino mino = null;
-		int i = new Random().nextInt(7); //losowa liczba od 0 do 6
+		int i = new Random().nextInt(5); //losowa liczba od 0 do 6
 		
 		switch(i) {
 		case 0: mino = new TetrominoL(); break;

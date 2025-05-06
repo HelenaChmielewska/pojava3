@@ -44,6 +44,8 @@ public class MainFrame extends JFrame {
         // Początkowy widok (menu)
         cardLayout.show(cardPanel, "Menu");
         
+        this.addKeyListener(new KeyHandler());
+        this.setFocusable(true);
        
     }
     
