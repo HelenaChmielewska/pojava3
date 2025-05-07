@@ -128,7 +128,7 @@ public class PlayManager {
 							staticBlocks.remove(i);
 						}
 					}
-					//lineCount++;
+					lineCount++;
 					for(int i=0; i<staticBlocks.size(); i++) {
 						if(staticBlocks.get(i).y < y ) {
 							staticBlocks.get(i).y +=Block.size;
@@ -139,11 +139,13 @@ public class PlayManager {
 				x = left_x;
 				y+=Block.size;
 			}
-			/* if(lineCount>0) {
-				score += lineCount*100;
-				System.out.println("Aktualny wynik: " + score);
-			} Narazie nie działa  */
 		}
+		if (lineCount > 0) {
+		       score += lineCount * 100;
+		       System.out.println("Usunięto linii: " + lineCount);
+		       System.out.println("Aktualny wynik: " + score);
+		}
+		
 	}
 	
 	public void draw(Graphics2D g2) {
