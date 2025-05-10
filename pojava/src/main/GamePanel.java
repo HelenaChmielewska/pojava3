@@ -15,9 +15,9 @@ public class GamePanel extends JPanel implements Runnable{
 	CardLayout cardLayout;
     JPanel cardPanel;
     PlayManager game;
+    public JLabel result;
     final int FPS = 60;
 	Thread gameThread;
-	int score=0;
 	
     public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
         JLabel label = new JLabel("Wynik:");
         topPanel.add(label);
         
-	    JLabel result = new JLabel(String.format("%d", score));
+	    result = new JLabel();
 	    topPanel.add(result);
 	    
 	    this.add(topPanel,BorderLayout.NORTH);
@@ -66,17 +66,14 @@ public class GamePanel extends JPanel implements Runnable{
 	    buttonBack.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//game.resetGame();
 				cardLayout.show(cardPanel, "Menu");
 			}
 			
 		});
-	    
-	    
-        
 	    setFocusable(true);	
 	    requestFocusInWindow();
-			
-		}
+    }
     
     public void launchGame() {
     	gameThread = new Thread(this);
@@ -103,6 +100,7 @@ public class GamePanel extends JPanel implements Runnable{
 					game.update();
 				}
 				repaint();
+				result.setText(String.valueOf(game.score));
 
 				delta-=1;
 			}

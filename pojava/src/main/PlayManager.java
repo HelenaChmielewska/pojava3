@@ -38,6 +38,7 @@ public class PlayManager {
 	public static int dropInterval = 60;
 	boolean gameOver;
 	int score;
+	int lines;
 	
 	public PlayManager() {
 		left_x = (MainFrame.WIDTH/2) - (WIDTH/2);
@@ -61,7 +62,7 @@ public class PlayManager {
 	private Tetromino pickMino() {
 		//wybieramy losowy kształt
 		Tetromino mino = null;
-		int i = new Random().nextInt(5); //losowa liczba od 0 do 6
+		int i = new Random().nextInt(7); //losowa liczba od 0 do 6
 		
 		switch(i) {
 		case 0: mino = new TetrominoL(); break;
@@ -108,7 +109,7 @@ public class PlayManager {
 		int x = left_x;
 		int y = top_y;
 		int blockCounter = 0;
-		int lineCount = 0;
+		int lineCounter=0;
 		
 		while (x < right_x && y < bottom_y) {
 			
@@ -128,7 +129,17 @@ public class PlayManager {
 							staticBlocks.remove(i);
 						}
 					}
-					lineCount++;
+					lineCounter++;
+					lines++;
+					//co każde 5 lini klocek spada szybciej o 10 razy na sekundę
+					if(lines % 5 == 0 && dropInterval > 1) {
+						if(dropInterval>10) {
+								dropInterval -= 10;
+						}
+						else {
+							dropInterval -= 1;
+						}
+					}
 					for(int i=0; i<staticBlocks.size(); i++) {
 						if(staticBlocks.get(i).y < y ) {
 							staticBlocks.get(i).y +=Block.size;
@@ -140,14 +151,26 @@ public class PlayManager {
 				y+=Block.size;
 			}
 		}
-		if (lineCount > 0) {
-		       score += lineCount * 100;
-		       System.out.println("Usunięto linii: " + lineCount);
+		if (lineCounter > 0) {
+		       score += lineCounter * 100;
 		       System.out.println("Aktualny wynik: " + score);
 		}
 		
 	}
 	
+	/* Coś tu narazie nie dziala xd
+	 * public void resetGame() {
+	    staticBlocks.clear();
+	    currentMino = pickMino();
+	    currentMino.setXY(MINO_START_X, MINO_START_Y);
+	    nextMino = pickMino();
+	    nextMino.setXY(NEXTMINO_X, NEXTMINO_Y);
+	    score = 0;
+	    lines = 0;
+	    dropInterval=60;
+	    gameOver = false;
+	    
+	} */
 	public void draw(Graphics2D g2) {
 		//okienko gry
 		g2.setColor(new Color(0,0,153));
@@ -167,7 +190,7 @@ public class PlayManager {
 			staticBlocks.get(i).draw(g2);
 		}
 		
-		//napis poused
+		//napis paused i gameover
 		g2.setColor(Color.white);
 		g2.setFont(g2.getFont().deriveFont(50f));
 		if(gameOver) {
