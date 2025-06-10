@@ -105,6 +105,20 @@ public class PlayManager {
 			currentMino.update();
 		}
 	}
+	public static void changeLevel() {
+		if(SecondMenuPanel.whatlevel==1) {
+			dropInterval = 90;
+			//System.out.println(dropInterval);
+		}
+		else if(SecondMenuPanel.whatlevel==2) {
+			dropInterval = 60;
+			//System.out.println(dropInterval);
+		}
+		if(SecondMenuPanel.whatlevel==3) {
+			dropInterval = 30;
+			//System.out.println(dropInterval);
+		}
+	}
 	public void deleteLine(){
 		int x = left_x;
 		int y = top_y;
@@ -157,8 +171,7 @@ public class PlayManager {
 		}
 		
 	}
-	
-	//Coś tu narazie nie dziala xd
+	 //resetowanie gry
 	public void resetGame() {
 	    staticBlocks.clear();
 	    currentMino = pickMino();
@@ -167,9 +180,7 @@ public class PlayManager {
 	    nextMino.setXY(NEXTMINO_X, NEXTMINO_Y);
 	    score = 0;
 	    lines = 0;
-	    dropInterval = 60;
-	    gameOver = false;
-	    
+	    changeLevel();
 	} 
 	public void draw(Graphics2D g2) {
 		//okienko gry
@@ -204,4 +215,8 @@ public class PlayManager {
 			g2.drawString("PAUSED", x, y);	
 		}
 	}
+	
+	/*public int getScore() {
+        return score;
+    }*/
 }

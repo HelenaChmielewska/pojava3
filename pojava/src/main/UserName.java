@@ -16,6 +16,7 @@ public class UserName extends JTextField{
 	
 	String placeholder;
 	boolean showPlaceholder;
+	public String userName;
 	
 	public UserName(String placeholder, int columns){
 		super(placeholder, columns);
@@ -38,14 +39,22 @@ public class UserName extends JTextField{
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(getText().isEmpty()) {
-					setText(placeholder);
-					showPlaceholder = true;
-				}
+				 String text = getText();
+	                if (text.isEmpty()) {
+	                    setText(placeholder);
+	                    showPlaceholder = true;
+	                    userName = null;
+	                } else {
+	                    showPlaceholder = false;
+	                    userName = text;
+	                }
 				
 			}
 		});
 		
 	}
+	public String getUserName() {
+        return userName;
+    }
 
 }

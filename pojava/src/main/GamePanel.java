@@ -18,12 +18,19 @@ public class GamePanel extends JPanel implements Runnable{
     public JLabel result;
     final int FPS = 60;
 	Thread gameThread;
+	private SecondMenuPanel secondMenu;
+	private MenuPanel menu;
+	public UsersRanking usersRanking;
 	
     public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+        this.secondMenu = secondMenu;
+        this.menu = menu;
+        
+        usersRanking = new UsersRanking();
        
         //implementacja KeyListener
         this.addKeyListener(new KeyHandler());
@@ -66,6 +73,9 @@ public class GamePanel extends JPanel implements Runnable{
 	    buttonBack.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//usersRanking.aktualizujUserRanking(secondMenu.getName(), game.score);
+				//usersRanking.aktualizujUserRanking(secondMenu.getName(), game.score);
+				//usersRanking.zapiszOsiagniecia();
 				cardLayout.show(cardPanel, "Menu");
 			}
 			
@@ -74,7 +84,20 @@ public class GamePanel extends JPanel implements Runnable{
 	    requestFocusInWindow();
     }
     
+    public void stopGameThread() {
+        if (gameThread != null) {
+            Thread temp = gameThread;
+            gameThread = null;
+            try {
+                temp.join(); // czekaj, aż wątek się zakończy
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
     public void launchGame() {
+    	stopGameThread();
     	gameThread = new Thread(this);
     	gameThread.start();
     }

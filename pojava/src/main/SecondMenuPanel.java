@@ -15,6 +15,8 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 	CardLayout cardLayout;
     JPanel cardPanel;
     GamePanel gamePanel;
+    UserName nazwaUżytkownika;
+    static int whatlevel;
 	
     public SecondMenuPanel(CardLayout cardLayout,JPanel cardPanel, GamePanel gamePanel) throws HeadlessException {
         
@@ -34,14 +36,15 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         
        //tworzenie przycisków
         
-        UserName nazwaUżytkownika = new UserName("Wpisz nazwę użytkownika",30);
+        nazwaUżytkownika = new UserName("Wpisz nazwę użytkownika",30);
         
-        String[] levels = {"Normalny","Trudny", "Łatwy"};
+        String[] levels = {"Łatwy","Normalny","Trudny"};
         JPanel setLevel = new JPanel();
         setLevel.setLayout(new FlowLayout());
         setLevel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         JLabel label = new JLabel("Poziom Trudności: ");
         JComboBox level = new JComboBox<>(levels); 
+        level.setSelectedItem("Normalny");
         setLevel.add(label);
         setLevel.add(level);
         
@@ -130,6 +133,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cardPanel, "Game");
+				gamePanel.game.gameOver = false;
 				gamePanel.game.resetGame();
 				gamePanel.launchGame();
 			}
@@ -142,11 +146,32 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 			}
 			
 		});
-  
-                
+        level.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	    if (e.getSource() == level) {
+        	        String selectedLevel = (String) level.getSelectedItem();
+        	        
+        	        switch (selectedLevel) {
+        	            case "Łatwy":
+        	                whatlevel = 1;
+        	                break;
+        	            case "Normalny":
+        	                whatlevel = 2;
+        	                break;
+        	            case "Trudny":
+        	                whatlevel = 3;
+        	                break;
+        	        }
+        	        PlayManager.changeLevel();
+        	        //System.out.println("Wybrano poziom: " + selectedLevel); // debug
+        	    }
+        	}
+        });
+                       
 }
-	
-	
+    public String getName() {
+        return nazwaUżytkownika.getUserName();
+    }
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {

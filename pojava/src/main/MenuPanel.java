@@ -13,7 +13,8 @@ import javax.swing.event.*;
 public class MenuPanel extends BackgroundPanel implements ActionListener
 {
 	CardLayout cardLayout; //cardLayout pozwala przełączać się między panelami
-    JPanel cardPanel; 
+    JPanel cardPanel;
+    
 	
     public MenuPanel(CardLayout cardLayout, JPanel cardPanel){ 
         
@@ -22,6 +23,7 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
     	this.setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+        
         
     	
         //tworzenie centralnego panelu
@@ -134,5 +136,6 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
 		// TODO Auto-generated method stub
 		
 	}
+	
 	
 }

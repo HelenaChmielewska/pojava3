@@ -142,7 +142,7 @@ public class Tetromino {
 		}
 	}
 	
-	public void update() {
+	public void update() {		
 		synchronized(KeyHandler.INSTANCE) {
 			//sterowanie tetrominem
 			if(deactivating) {
