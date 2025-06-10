@@ -66,7 +66,6 @@ public class GamePanel extends JPanel implements Runnable{
 	    buttonBack.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//game.resetGame();
 				cardLayout.show(cardPanel, "Menu");
 			}
 			

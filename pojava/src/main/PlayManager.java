@@ -153,13 +153,13 @@ public class PlayManager {
 		}
 		if (lineCounter > 0) {
 		       score += lineCounter * 100;
-		       System.out.println("Aktualny wynik: " + score);
+		       //System.out.println("Aktualny wynik: " + score);
 		}
 		
 	}
 	
-	/* Coś tu narazie nie dziala xd
-	 * public void resetGame() {
+	//Coś tu narazie nie dziala xd
+	public void resetGame() {
 	    staticBlocks.clear();
 	    currentMino = pickMino();
 	    currentMino.setXY(MINO_START_X, MINO_START_Y);
@@ -167,10 +167,10 @@ public class PlayManager {
 	    nextMino.setXY(NEXTMINO_X, NEXTMINO_Y);
 	    score = 0;
 	    lines = 0;
-	    dropInterval=60;
+	    dropInterval = 60;
 	    gameOver = false;
 	    
-	} */
+	} 
 	public void draw(Graphics2D g2) {
 		//okienko gry
 		g2.setColor(new Color(0,0,153));

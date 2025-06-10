@@ -130,6 +130,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(cardPanel, "Game");
+				gamePanel.game.resetGame();
 				gamePanel.launchGame();
 			}
 			
