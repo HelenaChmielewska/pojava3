@@ -10,11 +10,12 @@ import javax.swing.event.*;
  * @author Helena Chmielewska
  */
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends BackgroundPanel implements Runnable{
 
 	CardLayout cardLayout;
     JPanel cardPanel;
     PlayManager game;
+    JPanel topPanel;
     public JLabel result;
     final int FPS = 60;
 	Thread gameThread;
@@ -26,6 +27,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
     public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
+    	super("/tetris_kolor.png");
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
@@ -40,7 +42,8 @@ public class GamePanel extends JPanel implements Runnable{
         
          
       //componenty nad ramka gry
-        JPanel topPanel = new JPanel();
+        topPanel = new JPanel();
+        topPanel.setOpaque(true);
         topPanel.setLayout(new FlowLayout());
 	    
         JButton buttonBack = new JButton("Menu");
@@ -128,6 +131,30 @@ public class GamePanel extends JPanel implements Runnable{
 			
 		}
 		
+	}
+	
+	public void ustawTlo(int numerTla) {
+	    switch (numerTla) {
+	        case 1:
+	            setBackgroundImage("/tetris_kolor.png");
+	            topPanel.setBackground(new Color(194,172,233));
+	            break;
+	        case 2:
+	            setBackgroundImage("/tetris_misie.png");
+	            topPanel.setBackground(new Color(230,196,236));
+	            break;
+	        case 3:
+	            setBackgroundImage("/tetris_smoki.png");
+	            topPanel.setBackground(new Color(214,254,210));
+	            break;
+	        case 4:
+	            setBackgroundImage("/tetris_pingwiny.png");
+	            topPanel.setBackground(new Color(175,231,241));
+	            break;
+	        default:
+	            setBackgroundImage("/tetris_kolor.png"); 
+	            topPanel.setBackground(new Color(194,172,233));
+	    }
 	}
 
 	public void paintComponent(Graphics g) {

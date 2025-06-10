@@ -17,6 +17,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
     GamePanel gamePanel;
     UserName nazwaUżytkownika;
     static int whatlevel;
+    static int whatBackground;
 	
     public SecondMenuPanel(CardLayout cardLayout,JPanel cardPanel, GamePanel gamePanel) throws HeadlessException {
         
@@ -42,20 +43,21 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         JPanel setLevel = new JPanel();
         setLevel.setLayout(new FlowLayout());
         setLevel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        
         JLabel label = new JLabel("Poziom Trudności: ");
         JComboBox level = new JComboBox<>(levels); 
         level.setSelectedItem("Normalny");
         setLevel.add(label);
         setLevel.add(level);
         
-        String[] gameColor = {"Tło1","Tło2", "Tło3"};
-        JPanel setColor = new JPanel();
-        setColor.setLayout(new FlowLayout());
-        setColor.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        String[] gameBackground = {"Fiolet","Misie","Smoki", "Pingwiny"};
+        JPanel setBackground = new JPanel();
+        setBackground.setLayout(new FlowLayout());
+        setBackground.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         JLabel label2 = new JLabel("Tło gry: ");
-        JComboBox colors = new JComboBox<>(gameColor);
-        setColor.add(label2);
-        setColor.add(colors);
+        JComboBox backgrounds = new JComboBox<>(gameBackground);
+        setBackground.add(label2);
+        setBackground.add(backgrounds);
         
         
         JButton buttonStart = new JButton("START");
@@ -66,7 +68,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         
         //wyśrodkowanie przycisków
         setLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        setColor.setAlignmentX(Component.CENTER_ALIGNMENT);
+        setBackground.setAlignmentX(Component.CENTER_ALIGNMENT);
         nazwaUżytkownika.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonStart.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonBack.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -88,9 +90,9 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         setLevel.setMaximumSize(buttonSize2);
         setLevel.setPreferredSize(buttonSize2);
         
-        setColor.setMinimumSize(buttonSize2);
-        setColor.setMaximumSize(buttonSize2);
-        setColor.setPreferredSize(buttonSize2);
+        setBackground.setMinimumSize(buttonSize2);
+        setBackground.setMaximumSize(buttonSize2);
+        setBackground.setPreferredSize(buttonSize2);
         
         buttonBack.setMinimumSize(new Dimension(100,20));
         buttonBack.setMaximumSize(new Dimension(100,20));
@@ -104,7 +106,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         centerPanel.add(Box.createVerticalStrut(20)); //odstęp 20px pomiędzy przyciskami
         centerPanel.add(setLevel);
         centerPanel.add(Box.createVerticalStrut(20));
-        centerPanel.add(setColor);
+        centerPanel.add(setBackground);
         centerPanel.add(Box.createVerticalStrut(20));
         centerPanel.add(buttonStart);
         centerPanel.add(Box.createVerticalStrut(120));
@@ -123,8 +125,8 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         buttonBack.setFocusPainted(false); 
         setLevel.setBackground(new Color(229,204,255)); 
         setLevel.setFont(new Font("Arial", Font.BOLD, 14));
-        setColor.setBackground(new Color(229,204,255));
-        setColor.setFont(new Font("Arial", Font.BOLD, 14));
+        setBackground.setBackground(new Color(229,204,255));
+        setBackground.setFont(new Font("Arial", Font.BOLD, 14));
         
         
         
@@ -132,6 +134,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         buttonStart.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				gamePanel.ustawTlo(whatBackground);
 				cardLayout.show(cardPanel, "Game");
 				gamePanel.game.gameOver = false;
 				gamePanel.game.resetGame();
@@ -164,6 +167,31 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         	        }
         	        PlayManager.changeLevel();
         	        //System.out.println("Wybrano poziom: " + selectedLevel); // debug
+        	    }
+        	}
+        });
+        
+        backgrounds.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	    if (e.getSource() == backgrounds) { //czy zrodlem eventu jest ten combobox
+        	        String selectedBackground = (String) backgrounds.getSelectedItem();
+        	        
+        	        switch (selectedBackground) {
+	        	        case "Fiolet":
+	    	                whatBackground = 1;
+	    	                break;
+        	        	case "Misie":
+        	                whatBackground = 2;
+        	                break;
+        	            case "Smoki":
+        	            	whatBackground = 3;
+        	                break;
+        	            case "Pingwiny":
+        	            	whatBackground = 4;
+        	                break;
+        	        }
+        	        
+        	        //System.out.println("Wybrano tło: " + selectedBackground); //debug
         	    }
         	}
         });
