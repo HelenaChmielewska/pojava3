@@ -24,6 +24,8 @@ public class PlayManager {
 	public static int right_x;
 	public static int top_y;
 	public static int bottom_y;
+	public UsersRanking usersRanking;
+	public UserScore usersScore;
 	
 	//tetromino
 	Tetromino currentMino;
@@ -215,8 +217,11 @@ public class PlayManager {
 			g2.drawString("PAUSED", x, y);	
 		}
 	}
+	 public void saveScore() {
+		 if(gameOver) {
+			 int wynik = score;
+			 
+		 }
+	 }
 	
-	/*public int getScore() {
-        return score;
-    }*/
 }

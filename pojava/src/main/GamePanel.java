@@ -20,18 +20,17 @@ public class GamePanel extends JPanel implements Runnable{
 	Thread gameThread;
 	private SecondMenuPanel secondMenu;
 	private MenuPanel menu;
-	public UsersRanking usersRanking;
+	//public UsersRanking usersRanking;
+	//public UserScore usersScore;
+
 	
     public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
         
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
-        this.secondMenu = secondMenu;
-        this.menu = menu;
-        
-        usersRanking = new UsersRanking();
        
+         
         //implementacja KeyListener
         this.addKeyListener(new KeyHandler());
         this.setFocusable(true);
