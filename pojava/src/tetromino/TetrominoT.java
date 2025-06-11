@@ -2,6 +2,11 @@ package tetromino;
 
 import java.awt.Color;
 
+/**
+ * Klasa danego kształtu tetrominu
+ * @author Kinga Urban
+ */
+
 public class TetrominoT extends Tetromino{
 	
 	public TetrominoT() {

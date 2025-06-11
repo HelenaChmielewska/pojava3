@@ -3,6 +3,11 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Klasa obługująca zdarzenia przycisków
+ * @author Helena Chmielewska, Kinga Urban
+ */
+
 public class KeyHandler implements KeyListener{
 	public static KeyHandler INSTANCE;
 	public boolean upPressed, downPressed, leftPressed, rightPressed, pausePressed;

@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * Klasa panelu głównego menu
- * @author Kinga Urban
+ * @author Kinga Urban, Helena Chmielewska
  */
 
 public class MenuPanel extends BackgroundPanel implements ActionListener
@@ -49,10 +49,7 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
         JButton buttonRanking = new JButton("Ranking użytkowników");
         JButton buttonInstrukcja = new JButton("Instrukcja");
         
-        JLabel labelJezyk = new JLabel("Zmień język");
-        
-        String[] languages = {"polski", "angielski"};
-        JComboBox <String>comboBoxJezyk = new JComboBox <>(languages);
+       
         
         
         //wyśrodkowanie przycisków
@@ -85,8 +82,6 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
         centerPanel.add(Box.createVerticalStrut(20));
         centerPanel.add(buttonInstrukcja);
         centerPanel.add(Box.createVerticalStrut(20));
-        bottomPanel.add(labelJezyk);
-        bottomPanel.add(comboBoxJezyk);
         
         
         //wygląd komponentów - kolor, czcionka
@@ -102,10 +97,6 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
         buttonInstrukcja.setFocusPainted(false); 
         buttonInstrukcja.setFont(new Font("Arial", Font.BOLD, 14));
         
-        labelJezyk.setForeground(new Color(229,204,255));
-        labelJezyk.setFont(new Font("Arial", Font.BOLD, 12));
-        
-        comboBoxJezyk.setBackground(new Color(229,204,255)); 
  
         //Ustawienie funkcjonalności przycisków
         buttonGraj.addActionListener(new ActionListener(){

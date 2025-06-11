@@ -6,7 +6,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Klasa głównego okna i obsługująca przełączanie między panelami
+ * Klasa głównego okna obługująca przełączanie między panelami
  * @author Kinga Urban, Helena Chmielewska
  */
 
@@ -58,6 +58,7 @@ public class MainFrame extends JFrame {
         this.addKeyListener(new KeyHandler());
         this.setFocusable(true);
         
+        //zapisuje wynik do rankingu, gdy zamkniemy okno
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

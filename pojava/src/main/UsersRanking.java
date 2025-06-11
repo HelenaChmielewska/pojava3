@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Klasa obługująca ranking graczy
+ * @author Helena Chmielewska, Kinga Urban
+ */
+
 public class UsersRanking {
 
  private final String nazwaPliku = "osiagniecia.csv"; //plik w ktorym wszystko bedzie przechowywane

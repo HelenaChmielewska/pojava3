@@ -16,6 +16,11 @@ import tetromino.TetrominoZigZag1;
 import tetromino.TetrominoZigZag2;
 import tetromino.Block;
 
+/**
+ * Klasa obsługująca logikę gry
+ * @author Helena Chmielewska, Kinga Urban
+ */
+
 public class PlayManager {
 	//play area
 	final int WIDTH = 360;

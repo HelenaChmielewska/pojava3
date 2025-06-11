@@ -7,7 +7,7 @@ import javax.swing.event.*;
 
 /**
  * Klasa panelu drugiego menu - ustawienia gracza
- * @author Helena Chmielewska
+ * @author Helena Chmielewska, Kinga Urban
  */
 
 public class SecondMenuPanel extends BackgroundPanel implements ActionListener

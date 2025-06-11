@@ -8,7 +8,10 @@ import main.PlayManager;
 
 import java.awt.Color;
 
-//klasa abstrakcyjna, po której dziedziczą inne tetrominy
+/**
+ * Klasa głównego okna obługująca przełączanie między panelami
+ * @author Kinga Urban
+ */
 public class Tetromino {
 	
 	

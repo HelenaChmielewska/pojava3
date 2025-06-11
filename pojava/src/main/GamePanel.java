@@ -7,7 +7,7 @@ import javax.swing.event.*;
 
 /**
  * Klasa panelu gry
- * @author Helena Chmielewska
+ * @author Helena Chmielewska, Kinga Urban
  */
 
 public class GamePanel extends BackgroundPanel implements Runnable{

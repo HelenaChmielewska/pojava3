@@ -1,5 +1,10 @@
 package main;
 
+/**
+ * Klasa wyniku gracza
+ * @author Helena Chmielewska
+ */
+
 public class UserScore {
 	
 	private String uzytkownik;
