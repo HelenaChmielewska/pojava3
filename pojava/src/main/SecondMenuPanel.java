@@ -18,6 +18,7 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
     UserName nazwaUżytkownika;
     static int whatlevel;
     static int whatBackground;
+    //public String userName;
 	
     public SecondMenuPanel(CardLayout cardLayout,JPanel cardPanel, GamePanel gamePanel) throws HeadlessException {
         
@@ -134,6 +135,12 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         buttonStart.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String userName = getUserNameFromField();
+		        if (userName == null) {
+		        	JOptionPane.showMessageDialog(SecondMenuPanel.this, "Musisz wpisać nazwę użytkownika!", "Ostrzeżenie", JOptionPane.WARNING_MESSAGE);
+		        	return; // nie przechodzimy dalej
+		        }
+				
 				gamePanel.ustawTlo(whatBackground);
 				cardLayout.show(cardPanel, "Game");
 				gamePanel.game.gameOver = false;
@@ -195,10 +202,18 @@ public class SecondMenuPanel extends BackgroundPanel implements ActionListener
         	    }
         	}
         });
+        
+        
                        
 }
-    public String getName() {
-        return nazwaUżytkownika.getUserName();
+    public String getUserNameFromField() {
+    	 String text = nazwaUżytkownika.getText().trim();
+    	    if (text.isEmpty() || text.equals(nazwaUżytkownika.placeholder)) {
+    	        return null;
+    	    }
+    	    else {
+    	    	return text;
+    	    }
     }
 	
 	@Override

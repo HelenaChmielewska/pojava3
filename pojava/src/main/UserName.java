@@ -39,7 +39,7 @@ public class UserName extends JTextField{
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				 String text = getText();
+				 String text = getText().trim(); //usuń spacje z początku i końca
 	                if (text.isEmpty()) {
 	                    setText(placeholder);
 	                    showPlaceholder = true;
@@ -48,7 +48,6 @@ public class UserName extends JTextField{
 	                    showPlaceholder = false;
 	                    userName = text;
 	                }
-				
 			}
 		});
 		

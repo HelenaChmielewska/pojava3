@@ -15,14 +15,16 @@ public class UsersRanking {
   //tworzy plik do zapisu jesli taki jeszcze nie istnieje
   File file = new File(nazwaPliku);
   if(!file.exists()) {
-   try {
-    file.createNewFile();
-    rankingLista = new ArrayList<>();
-   } catch (IOException e) {
-    pokazError(e.getMessage());
+	  try {
+	    file.createNewFile();
+	    rankingLista = new ArrayList<>();
+   } 
+	  catch (IOException e) {
+	   pokazError(e.getMessage());
    }
-  } else {
-   rankingLista = wczytajOsiagniecia();
+  } 
+  else {
+	  rankingLista = wczytajOsiagniecia();
   }
   ilosc = rankingLista.size();
  }
@@ -107,16 +109,29 @@ public class UsersRanking {
    dodajUserRanking(imie, ostatni);
   }
   ilosc = rankingLista.size();
-  for(UserScore rank : rankingLista) {
+  
+  /*for(UserScore rank : rankingLista) {
 	  System.out.println(rank.getUzytkownik() + ";" + rank.getNajwyzszyWynik() + ";" + rank.getOstatniWynik() + "\n");
-  }
+  }*/
  }
 
- //zapisz do plikuj
+ //zapisz do pliku
  public void zapiszOsiagniecia() {
   try {
-   FileWriter file = new FileWriter(nazwaPliku);
-   for(UserScore rank : rankingLista) {
+	// Sortujemy listę według najwyższego wyniku malejąco,
+      // a gdy wyniki się zgadzają, to alfabetycznie po nazwie użytkownika
+      rankingLista.sort((o1, o2) -> {
+          int wynikCompare = Integer.compare(o2.getNajwyzszyWynik(), o1.getNajwyzszyWynik());
+          if (wynikCompare != 0) {
+              return wynikCompare;
+          } else {
+              return o1.getUzytkownik().compareToIgnoreCase(o2.getUzytkownik());
+          }
+      });
+	 
+	  FileWriter file = new FileWriter(nazwaPliku);
+   
+	  for(UserScore rank : rankingLista) {
     file.write(rank.getUzytkownik() + ";" + rank.getNajwyzszyWynik() + ";" + rank.getOstatniWynik() + "\n");
    }
    file.close();

@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * Klasa panelu głównego menu
@@ -14,15 +16,17 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
 {
 	CardLayout cardLayout; //cardLayout pozwala przełączać się między panelami
     JPanel cardPanel;
+    private UsersRanking usersRanking;
     
 	
-    public MenuPanel(CardLayout cardLayout, JPanel cardPanel){ 
+    public MenuPanel(CardLayout cardLayout, JPanel cardPanel, UsersRanking usersRanking){ 
         
     	super("/tetris_background.png"); //przekazujemy nazwę obrazu do BackgroundPanel
     	
     	this.setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+        this.usersRanking = usersRanking;
         
         
     	
@@ -110,6 +114,12 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
 				cardLayout.show(cardPanel, "Menu2");
 			}
 		});
+        buttonRanking.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showRankingDialog();
+			}
+		});
         buttonInstrukcja.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,11 +141,50 @@ public class MenuPanel extends BackgroundPanel implements ActionListener
 
         JOptionPane.showMessageDialog(this, instructions, "Instrukcja gry", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void showRankingDialog() {
+        // Najpierw posortuj listę (kopię, by nie zmieniać oryginału)
+        ArrayList<UserScore> posortowana = usersRanking.posortuj();
+
+        // Przygotuj dane do tabeli
+        String[] columnNames = {"Nazwa użytkownika", "Najwyższy wynik", "Ostatni wynik"};
+        Object[][] data = new Object[posortowana.size()][3];
+
+        for (int i = 0; i < posortowana.size(); i++) {
+            UserScore u = posortowana.get(i);
+            data[i][0] = u.getUzytkownik();
+            data[i][1] = u.getNajwyzszyWynik();
+            data[i][2] = u.getOstatniWynik();
+        }
+
+        // Utwórz model tabeli i JTable
+        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // tabela tylko do odczytu
+            }
+        };
+        JTable table = new JTable(model);
+
+        // Opcjonalnie ustaw szerokości kolumn
+        table.getColumnModel().getColumn(0).setPreferredWidth(150);
+        table.getColumnModel().getColumn(1).setPreferredWidth(100);
+        table.getColumnModel().getColumn(2).setPreferredWidth(100);
+
+        // Umieść tabelę w scroll pane na wypadek długiej listy
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setPreferredSize(new Dimension(400, 300));
+
+        // Pokaż dialog z tabelą
+        JOptionPane.showMessageDialog(null, scrollPane, "Ranking użytkowników", JOptionPane.INFORMATION_MESSAGE);
+    }
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	
 	
 }

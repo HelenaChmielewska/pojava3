@@ -19,18 +19,21 @@ public class GamePanel extends BackgroundPanel implements Runnable{
     public JLabel result;
     final int FPS = 60;
 	Thread gameThread;
-	private SecondMenuPanel secondMenu;
+	public SecondMenuPanel secondMenu;
 	private MenuPanel menu;
-	//public UsersRanking usersRanking;
+	public UsersRanking usersRanking;
 	//public UserScore usersScore;
 
 	
-    public GamePanel(CardLayout cardLayout,JPanel cardPanel) throws HeadlessException {
+    public GamePanel(CardLayout cardLayout,JPanel cardPanel, UsersRanking ranking, SecondMenuPanel secondMenu) throws HeadlessException {
         
     	super("/tetris_kolor.png");
     	setLayout(new BorderLayout());
     	this.cardLayout = cardLayout;
         this.cardPanel = cardPanel;
+        
+        this.usersRanking = ranking;
+        this.secondMenu = secondMenu;
        
          
         //implementacja KeyListener
@@ -75,10 +78,8 @@ public class GamePanel extends BackgroundPanel implements Runnable{
 	    buttonBack.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//usersRanking.aktualizujUserRanking(secondMenu.getName(), game.score);
-				//usersRanking.aktualizujUserRanking(secondMenu.getName(), game.score);
-				//usersRanking.zapiszOsiagniecia();
-				cardLayout.show(cardPanel, "Menu");
+				saveScoreIfValid();
+		        cardLayout.show(cardPanel, "Menu");
 			}
 			
 		});
@@ -155,6 +156,14 @@ public class GamePanel extends BackgroundPanel implements Runnable{
 	            setBackgroundImage("/tetris_kolor.png"); 
 	            topPanel.setBackground(new Color(194,172,233));
 	    }
+	}
+	
+	public void saveScoreIfValid() {
+	    String username = secondMenu.getUserNameFromField();
+	    if (username != null && !username.isEmpty()) {
+            usersRanking.aktualizujUserRanking(username, game.score);
+            usersRanking.zapiszOsiagniecia();
+        } 
 	}
 
 	public void paintComponent(Graphics g) {

@@ -2,6 +2,8 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Klasa głównego okna i obsługująca przełączanie między panelami
@@ -23,15 +25,24 @@ public class MainFrame extends JFrame {
         // Ustawienie głównego panelu z CardLayout
         CardLayout cardLayout = new CardLayout();
         JPanel cardPanel = new JPanel(cardLayout);
-
-        // Tworzenie paneli (menu, menu2, gra)
-        MenuPanel menu = new MenuPanel(cardLayout, cardPanel);
-        GamePanel gamePanel = new GamePanel(cardLayout,cardPanel);
-        SecondMenuPanel menu2 = new SecondMenuPanel(cardLayout, cardPanel,gamePanel);
         
-         
+        //Tworzymy UsersRanking
+        UsersRanking usersRanking = new UsersRanking();
         
+        //Tworzymy GamePanel z null jako secondMenu
+        GamePanel gamePanel = new GamePanel(cardLayout, cardPanel, usersRanking, null);
+        
+        //Tworzymy SecondMenuPanel i przekazujemy do niego gamePanel
+        SecondMenuPanel menu2 = new SecondMenuPanel(cardLayout, cardPanel, gamePanel);
+        
+        //ustawiamy secondMenu w GamePanel
+        gamePanel.secondMenu = menu2;
 
+        // Tworzenie MenuPanel
+        MenuPanel menu = new MenuPanel(cardLayout, cardPanel, usersRanking);
+        
+        
+    
         // Dodanie paneli do CardLayout i nadanie im nazw
         cardPanel.add(menu, "Menu");
         cardPanel.add(menu2, "Menu2");
@@ -46,6 +57,16 @@ public class MainFrame extends JFrame {
         
         this.addKeyListener(new KeyHandler());
         this.setFocusable(true);
+        
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (gamePanel != null) {
+                    gamePanel.saveScoreIfValid();
+                }
+               
+            }
+        });
        
     }
     
